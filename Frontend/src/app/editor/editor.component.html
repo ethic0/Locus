@@ -1,0 +1,57 @@
+<div class="editor-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+
+        <app-list-errors [errors]="errors"></app-list-errors>
+
+        <form [formGroup]="orderForm">
+          <fieldset [disabled]="isSubmitting">
+            <label >Customer Name:</label>
+            <input type="text" class="form-control" formControlName="cust_name" placeholder="Name">
+            <label>Contact No:</label>
+            <input type="number" class="form-control" formControlName="cust_contact" placeholder="Number">
+            <label>Pickup City:</label>
+            <select  class="form-control" (change)="changeP_city($event)"formControlName="pickup_city">
+              <option *ngFor="let city of pickup_cities" [ngValue]="city">{{city}}</option>
+            </select>
+            <label>Pickup Address:</label>
+            <input type="text" class="form-control" formControlName="pickup_add" placeholder="Address">
+            <label>Receiver:</label>
+            <input type="text" class="form-control" formControlName="recv_name"placeholder="Receiver Name">
+            <label>Receiver Contact:</label>
+           <input type="number" class="form-control" formControlName="recv_cont" placeholder="Number">
+           <label>Drop Off City:</label>
+           <select  class="form-control" (change)="changeD_city($event)" formControlName="drop_city" >
+             <option *ngFor="let city of drop_cities" [ngValue]="city">{{city}}</option>
+           </select>
+           <label>Distance:</label>
+           <input type="number" class="form-control" formControlName="distance" placeholder="Distance between the cities">
+           <label>Package Weight:</label>
+           <input type="number" class="form-control" formControlName="pkg_wt" placeholder="Weight">
+           <label>Receiver's Address:</label>
+           <input type="text" class="form-control" formControlName="recv_add" placeholder="Address">
+           <label>Package length:</label>
+           <input type="number" class="form-control" formControlName="pkg_length" placeholder="Length">
+           <label>Package Breadth:</label>
+           <input type="number" class="form-control" formControlName="pkg_breadth" placeholder="Breadth">
+           <label>Package Height:</label>
+           <input type="number" class="form-control" formControlName="pkg_height" placeholder="Height">
+           <label>Delivery Options</label>
+           <select  class="form-control" (change)="changedelivery($event)" formControlName="delivery_opt">
+             <option *ngFor="let options of delivery_option" [ngValue]="options">{{options}}</option>
+           </select>
+           <hr>
+
+            <button class="btn btn-lg pull-xs-right btn-primary" type="button" [disabled]="!orderForm.valid"
+             (click)="onSubmit()">
+              Place Order
+            </button>
+           
+          </fieldset>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
